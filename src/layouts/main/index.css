@@ -27,3 +27,11 @@
 .site-layout .site-layout-background {
   background: #fff;
 }
+
+
+.container {
+  margin: 24px 16px;
+  padding: 24px;
+  height: 100%;
+  background-color: #fff;
+}
