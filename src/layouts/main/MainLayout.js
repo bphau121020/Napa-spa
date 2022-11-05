@@ -1,28 +1,27 @@
-import React, { useState } from "react";
-import Content from "../content/Content";
-
-import "./Layout.css";
-
 import {
+  BookOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PayCircleOutlined,
   UserOutlined,
-  BookOutlined,
 } from "@ant-design/icons";
-
 import { Layout, Menu } from "antd";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import "./index.css";
 const { Header, Sider } = Layout;
 
-const Layouts = () => {
+const MainLayout = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <div>
       <Layout className="layout">
         <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo">NHT</div>
+          <div className="logo">{user?.name}</div>
           <Menu
             onClick={({ key }) => {
               navigate(key);
@@ -64,12 +63,13 @@ const Layouts = () => {
               }
             )}
           </Header>
-
-          <Content />
+          <div className="container">
+            <Outlet />
+          </div>
         </Layout>
       </Layout>
     </div>
   );
 };
 
-export default Layouts;
+export default MainLayout;
