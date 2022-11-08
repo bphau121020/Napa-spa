@@ -1,26 +1,15 @@
-import { Table } from "antd";
-import React from "react";
-import { columns, expandedRowRender } from "./table";
-import { employees } from "./data/employees";
+import React, { lazy, Suspense } from "react";
+import styles from "./index.module.css";
+const Detail = lazy(() => import("./Detail"));
+const TablePayRoll = lazy(() => import("./Table"));
 
 const Payroll = () => {
   return (
     <div>
-      <Table
-        rowSelection
-        columns={columns}
-        expandable={{
-          expandedRowRender,
-          defaultExpandedRowKeys: ["0"],
-        }}
-        rowKey="id"
-        dataSource={employees}
-        bordered
-        size="middle"
-        scroll={{
-          y: "calc(100vh - 250px)",
-        }}
-      />
+      <Suspense fallback={<div>Loading...</div>}>
+        <TablePayRoll />
+        <Detail />
+      </Suspense>
     </div>
   );
 };
