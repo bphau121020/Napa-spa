@@ -1,3 +1,7 @@
 .payroll__container .text-strong{
   font-weight: 500;
 }
+
+.table-center {
+  text-align: center;
+}

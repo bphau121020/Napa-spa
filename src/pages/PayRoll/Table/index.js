@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Table, Tag } from "antd";
+import { Button, Tag } from "antd";
+import { Table } from "ant-table-extensions";
 import styles from "./table.module.css";
 import { useState } from "react";
 import { EyeOutlined } from "@ant-design/icons";
@@ -15,7 +16,7 @@ const TablePayRoll = () => {
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
-      pageSize: 10,
+      pageSize: 20,
       total: employees.length,
     },
   });
@@ -58,6 +59,7 @@ const TablePayRoll = () => {
       key: "id",
       fixed: "left",
       width: 50,
+      align: "center",
       sorter: (a, b) => a.id - b.id,
     },
     {
@@ -72,6 +74,7 @@ const TablePayRoll = () => {
       dataIndex: "gender",
       key: "gender",
       width: 80,
+      align: "center",
       filters: [
         {
           text: " Male",
@@ -88,21 +91,21 @@ const TablePayRoll = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-    },
-    {
-      title: "Credit card",
-      dataIndex: "creditCard",
-      key: "creditCard",
+      ellipsis: true,
     },
     {
       title: "Position",
       dataIndex: "jobPosition",
       key: "jobPosition",
+      width: 100,
+      align: "center",
     },
     {
       title: "Contract type",
       dataIndex: "contractType",
       key: "contractType",
+      width: 150,
+      align: "center",
       render: (text) => {
         return text === "Fulltime" ? (
           <Tag color="geekblue">{text.toUpperCase()}</Tag>
@@ -115,6 +118,9 @@ const TablePayRoll = () => {
       title: "Salary",
       dataIndex: "salary",
       key: "salary",
+      width: 150,
+      fixed: "right",
+      sorter: (a, b) => a.salary - b.salary,
       render: (text) =>
         text.toLocaleString("it-IT", { style: "currency", currency: "VND" }),
     },
@@ -122,6 +128,9 @@ const TablePayRoll = () => {
       title: "Action",
       dataIndex: "",
       key: "x",
+      fixed: "right",
+      width: 100,
+      align: "center",
       render: (record) => (
         <Button
           type="dashed"
@@ -139,15 +148,22 @@ const TablePayRoll = () => {
     <Table
       columns={columns}
       dataSource={data}
-      pagination={tableParams.pagination}
+      pagination={{
+        ...tableParams.pagination,
+        showTotal: (total, range) =>
+          `${range[0]} - ${range[1]} of ${total} items`,
+      }}
       onChange={handleTableChange}
       rowSelection
       bordered
       rowKey="id"
       size="middle"
       scroll={{
-        y: "calc(100vh - 250px)",
+        x: 1000,
+        y: "calc(100vh - 290px)",
       }}
+      exportable={true}
+      searchable={true}
     />
   );
 };
