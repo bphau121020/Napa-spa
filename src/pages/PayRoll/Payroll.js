@@ -1,17 +1,7 @@
-import React, { lazy, Suspense } from "react";
-import "./index.css";
-const Detail = lazy(() => import("./Detail"));
-const TablePayRoll = lazy(() => import("./Table"));
+import React from "react";
 
 const Payroll = () => {
-  return (
-    <div className="payroll">
-      <Suspense fallback={<div>Loading...</div>}>
-        <TablePayRoll />
-        <Detail />
-      </Suspense>
-    </div>
-  );
+  return <div>Payroll Management</div>;
 };
 
 export default Payroll;
