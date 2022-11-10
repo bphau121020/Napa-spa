@@ -6,8 +6,8 @@ import { useState } from "react";
 import { EyeOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { drawerActions } from "../../../store/drawer/slice";
-import { employees } from "./../Data/employees";
-import { tasks } from "./../Data/task";
+import { employees } from "../Data/employees";
+import { tasks } from "../Data/task";
 import { useMemo } from "react";
 
 const TablePayRoll = () => {

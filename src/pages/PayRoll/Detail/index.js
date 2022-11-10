@@ -6,6 +6,7 @@ import format from "dayjs";
 import styles from "./index.module.css";
 import { useMemo } from "react";
 import { tasks } from "../Data/task";
+import { generateReportSalary } from "./report";
 
 const Detail = () => {
   const { payRollDetail } = useSelector((state) => state.drawer);
@@ -28,6 +29,7 @@ const Detail = () => {
       key,
     });
     setTimeout(() => {
+      generateReportSalary({ ...data, salarys });
       message.success({
         content: "Request succeeded!",
         key,
