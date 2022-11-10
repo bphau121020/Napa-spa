@@ -5,7 +5,7 @@ import { drawerActions } from "../../../store/drawer/slice";
 import format from "dayjs";
 import styles from "./index.module.css";
 import { useMemo } from "react";
-import { tasks } from "../Data/task";
+import { tasks } from "../data/task";
 import { generateReportSalary } from "./report";
 
 const Detail = () => {
