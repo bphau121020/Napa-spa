@@ -1,7 +1,8 @@
 import React from "react";
 
-import "antd/dist/antd.min.css";
 import "./workflow.css";
+import AddData from "../../components/workflow/add/addData";
+
 import { Badge, Space, Tag, Table } from "antd";
 
 const Work = () => {
@@ -174,7 +175,12 @@ const Work = () => {
   ];
   return (
     <div className="containers">
-      <h1 className="containers__title">Workflow Management</h1>
+      <div className="containers__header">
+        <h1 className="containers__header--title">Workflow Management</h1>
+        <div>
+          <AddData/>
+        </div>
+      </div>
       <div className="containers__content">
         <div className="containers__content--task">
           <h1 className="todo">Todo</h1>
