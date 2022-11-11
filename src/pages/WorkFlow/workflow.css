@@ -1,0 +1,29 @@
+.containers {
+  min-height: 100%;
+  overflow: hidden;
+}
+.containers__title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.containers__content {
+  height: 80vh;
+  overflow-y: auto;
+}
+.containers__content h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.containers__content .todo {
+  color: #e14d2a;
+}
+.containers__content .progress {
+  color: #fd841f;
+}
+.containers__content .done {
+  color: #82cd47;
+}
