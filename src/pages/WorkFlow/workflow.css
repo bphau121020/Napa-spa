@@ -2,8 +2,12 @@
   min-height: 100%;
   overflow: hidden;
 }
-.containers__title {
-  text-align: center;
+.containers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.containers__header--title {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
