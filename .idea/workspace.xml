@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d27466db-e63a-46ee-8cc0-4e60e2a3b0d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/9/4981fede834e86157516318a1dc3d78ddd351c48" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +56,8 @@
       <updated>1667836299980</updated>
       <workItem from="1667836312482" duration="19284000" />
       <workItem from="1667911888446" duration="24072000" />
-      <workItem from="1668129817193" duration="303000" />
+      <workItem from="1668129817193" duration="861000" />
+      <workItem from="1668130757582" duration="2742000" />
     </task>
     <servers />
   </component>
