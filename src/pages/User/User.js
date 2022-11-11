@@ -23,11 +23,12 @@ const columns = [
         title: 'Age',
         dataIndex: 'age',
         key: 'age',
+        sorter: (a, b) => a.age - b.age,
     },
     {
         title: 'Gender',
         dataIndex: 'gender',
-        key: [
+        filters: [
             {
                 text: 'Male',
                 value: 'Male',
@@ -37,6 +38,8 @@ const columns = [
                 value: 'Female',
             },
         ],
+        filterSearch: true,
+        onFilter: (value, record) => record.gender.startsWith(value),
     },
     {
         title: 'Phone',
@@ -69,7 +72,10 @@ const columns = [
 const onSearch = (value) => console.log(value);
 const onSubmit = (value) => console.log(value);
 const {Title} = Typography;
+const onChange = (pagination, filters, sorter, extra) => {
 
+    console.log('params', pagination, filters, sorter, extra);
+};
 const User = () => {
     const {isLogged, user} = useSelector((state) => state.auth);
     const [selectedRowKeys, setSelectedRowKeys] = useState([]);
@@ -119,7 +125,8 @@ const User = () => {
           {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
         </span>
             </div>
-            <Table rowSelection={rowSelection} columns={columns} dataSource={userData} pagination={{pageSize: 5}}/>
+            <Table rowSelection={rowSelection} columns={columns} dataSource={userData} pagination={{pageSize: 5}}
+                   onChange={onChange}/>
         </div>
 );
 }
