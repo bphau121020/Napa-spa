@@ -7,6 +7,16 @@ Menter: Nguyen Nhat Thanh.
 Supporter: Hoang Minh Nhat.
 
 Name Project: NAPA SPA!!!
-Tks everyone!!!
 
 Update: loading...
+
+Library & Framework:
+- Main:
++ Reactjs
++ Antd
++ react-router-dom
++ redux
+- & Others:
+...
+
+Tks everyone!!!
