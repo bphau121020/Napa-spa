@@ -192,6 +192,7 @@ const Work = () => {
             }}
             dataSource={datatodo}
             size="middle"
+            pagination={false}
           />
         </div>
         <div className="containers__content--task">
@@ -204,6 +205,7 @@ const Work = () => {
             }}
             dataSource={dataprogress}
             size="middle"
+            pagination={false}
           />
         </div>
         <div className="containers__content--task">
@@ -216,6 +218,7 @@ const Work = () => {
             }}
             dataSource={datadone}
             size="middle"
+            pagination={false}
           />
         </div>
       </div>
