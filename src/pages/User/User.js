@@ -1,4 +1,4 @@
-import { Button, Popconfirm, Space, Table, Typography } from "antd";
+import { Button, message, Popconfirm, Space, Table, Typography } from "antd";
 import Search from "antd/es/input/Search";
 import ModalCreateEmployee from "../../components/users/ModalCreate";
 import ModalUpdateEmployee from "../../components/users/ModalUpdate";
@@ -49,6 +49,13 @@ const User = () => {
       return obj;
     });
     setData(newArr);
+    message.success("Update user success!");
+  };
+
+  const onAdd = () => {
+    const key = data.at(-2).key;
+    setData([...data, { ...formData, key: key + 1 }]);
+    message.success("Add user success!");
   };
 
   const columns = [
@@ -161,7 +168,7 @@ const User = () => {
           />
         </div>
         <div className={styles.block}>
-          <ModalCreateEmployee onSubmit={onSubmit} primary />
+          <ModalCreateEmployee onAdd={onAdd} primary />
         </div>
       </div>
 
