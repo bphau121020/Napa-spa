@@ -1,6 +1,6 @@
 import React from "react";
 import { DatePicker, TimePicker, Form, Input } from "antd";
-
+import SelectData from "../select_data/selectData";
 const { RangePicker } = DatePicker;
 const layout = {
   labelCol: {
@@ -61,29 +61,7 @@ const Formdata = () => {
         onFinish={onFinish}
         validateMessages={validateMessages}
       >
-        <Form.Item
-          name={["user", "name"]}
-          label="Name"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name={["user", "email"]}
-          label="Email"
-          rules={[
-            {
-              type: "email",
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <SelectData />
         <Form.Item
           name={["user", "workflow"]}
           label="Workflow"
