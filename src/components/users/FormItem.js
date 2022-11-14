@@ -20,13 +20,13 @@ function FormItem(props) {
   const data = props.data;
 
   const initialValues = {
-    name: data.name,
-    nickname: data.nickname,
-    age: data.age,
-    gender: data.gender,
-    phone: data.phone,
-    email: data.email,
-    address: data.address,
+    name: data?.name ? data.name : "",
+    nickname: data?.nickname ? data.nickname : "",
+    age: data?.age ? data.age : 11,
+    gender: data?.gender ? data.gender : "",
+    phone: data?.phone ? data.phone : "",
+    email: data?.email ? data.email : "",
+    address: data?.address ? data.address : "",
   };
 
   const [formData, setFormData] = useState(initialValues);
