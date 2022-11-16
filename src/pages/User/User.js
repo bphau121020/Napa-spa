@@ -14,6 +14,7 @@ const onChange = (pagination, filters, sorter, extra) => {
   console.log("params", pagination, filters, sorter, extra);
 };
 const User = () => {
+  const { employees } = useSelector((state) => state.employee);
   const [data, setData] = useState(userData);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -66,17 +67,10 @@ const User = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "NickName",
-      dataIndex: "nickname",
-      key: "nickname",
+      title: "dateOfBirth",
+      dataIndex: "dateOfBirth",
+      key: "dateOfBirth",
       width: 100,
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-      width: 80,
-      sorter: (a, b) => a.age - b.age,
     },
     {
       title: "Gender",
@@ -175,7 +169,7 @@ const User = () => {
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={data}
+        dataSource={employees}
         pagination={{ pageSize: 5 }}
         onChange={onChange}
         scroll={{
