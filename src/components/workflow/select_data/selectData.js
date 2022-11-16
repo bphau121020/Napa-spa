@@ -1,26 +1,9 @@
 import React from "react";
 import { Select, Form, Input } from "antd";
 const { Option, OptGroup } = Select;
-const layout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const SelectData = () => {
-  const [form] = Form.useForm();
+
+const SelectData = ({ form }) => {
+  // const [form] = Form.useForm();
   const onGenderChange = (value) => {
     switch (value) {
       case "Watson":
@@ -82,16 +65,23 @@ const SelectData = () => {
         form.setFieldsValue({
           email: "",
         });
+        return;
+      default:
+        return;
     }
   };
   return (
-    <Form {...layout} form={form} name="control-hooks">
+    <>
       <Form.Item
         name="name"
         label="Name"
         rules={[
           {
+            type: "name",
+          },
+          {
             required: true,
+            message: "Please input your Email!",
           },
         ]}
       >
@@ -122,11 +112,14 @@ const SelectData = () => {
       </Form.Item>
       <Form.Item
         name="email"
-        label="Email"
+        label="E-mail"
         rules={[
           {
             type: "email",
+          },
+          {
             required: true,
+            message: "Please input your Email!",
           },
         ]}
       >
@@ -138,7 +131,7 @@ const SelectData = () => {
           prevValues.gender !== currentValues.gender
         }
       ></Form.Item>
-    </Form>
+    </>
   );
 };
 

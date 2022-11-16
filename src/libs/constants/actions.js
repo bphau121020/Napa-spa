@@ -1,0 +1,4 @@
+export const WORK_FLOW = {
+  ADD_WORK_FLOW: "ADD_WORK_FLOW",
+  DELETE_WORK_FLOW: "DELETE_WORK_FLOW",
+};

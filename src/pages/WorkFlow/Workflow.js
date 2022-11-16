@@ -2,225 +2,143 @@ import React from "react";
 
 import "./workflow.css";
 import AddData from "../../components/workflow/add/addData";
-
-import { Badge, Space, Tag, Table } from "antd";
-
+import { useState } from "react";
+import { Table } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import Done from "../../components/workflow/done/doneData";
+import { deleteWorkFlow } from "../../libs/redux/workflow/action";
 const Work = () => {
-  const expandedRowRender = () => {
-    const columns = [
-      {
-        title: "Date Start",
-        dataIndex: "date",
-        key: "date",
-      },
-      {
-        title: "Name Task",
-        dataIndex: "name",
-        key: "name",
-      },
-      {
-        title: "Status",
-        key: "state",
-        render: () => (
-          <span>
-            <Badge status="success" />
-            Finished
-          </span>
-        ),
-      },
-      {
-        title: "Deadline",
-        dataIndex: "deadline",
-        key: "deadline",
-      },
-      {
-        title: "Action",
-        dataIndex: "operation",
-        key: "operation",
-        render: () => (
-          <Space size="middle">
-            <a>Pause</a>
-            <a>Stop</a>
-          </Space>
-        ),
-      },
-    ];
-    const datadone = [
-      {
-        key: "info-1",
-        date: "2014-12-24 23:12:00",
-        name: "Create Documentation Architech",
-        deadline: "2014-12-30",
-      },
-      {
-        key: "info-2",
-        date: "2014-12-24 23:12:00",
-        name: "Code Fullstack",
-        deadline: "2014-11-30",
-      },
-    ];
-    return <Table columns={columns} dataSource={datadone} pagination={false} />;
-  };
+  const dataWorkflow = useSelector((state) => state?.workFlowReducer);
+  const dispatch = useDispatch();
+  const [idDone, setIdDone] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const columns = [
+    {
+      title: "STT",
+      dataIndex: "stt",
+      key: "stt",
+      width: 80,
+      align: 'center',
+    },
     {
       title: "Id",
       dataIndex: "id",
       key: "id",
+      width: 100,
     },
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      width: 150,
     },
+
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
+      width: 300,
     },
     {
       title: "Workflow",
-      key: "tags",
-      dataIndex: "tags",
-      render: (_, { tags }) => (
-        <>
-          {tags.map((tag) => {
-            let color = tag.length > 5 ? "geekblue" : "green";
-            if (tag === "CTO") {
-              color = "volcano";
-            }
-            return (
-              <Tag color={color} key={tag}>
-                {tag.toUpperCase()}
-              </Tag>
-            );
-          })}
-        </>
-      ),
+      key: "workflow",
+      dataIndex: "workflow",
+      width: 80,
+      align: 'center',
+    },
+    {
+      title: "Name Task",
+      dataIndex: "nameTask",
+      key: "nameTask",
+      ellipsis: true,
     },
     {
       title: "Creator",
       dataIndex: "creator",
       key: "creator",
+      width: 130,
+      align: 'center',
     },
     {
-      title: "Date",
+      title: "Date Create",
       dataIndex: "createdAt",
-      key: "createdAt",
+      width: 150,
+      render: (_, { createdAt }) => (
+        <div>{moment(createdAt).format("DD/MM/YYYY HH:mm:ss")}</div>
+      ),
+    },
+    {
+      title: "Date Start",
+      dataIndex: "startDate",
+      width: 150,
+      render: (_, { startDate }) => (
+        <div>{moment(startDate).format("DD/MM/YYYY HH:mm:ss")}</div>
+      ),
+    },
+    {
+      title: "Date End",
+      dataIndex: "endDate",
+      width: 150,
+      render: (_, { endDate }) => (
+        <div>{moment(endDate).format("DD/MM/YYYY HH:mm:ss")}</div>
+      ),
     },
     {
       title: "Action",
       key: "operation",
-      render: () => <a>Done</a>,
+      width: 60,
+      align: 'center',
+      render: (_, { id }) => (
+        <div
+          className="btn-delete"
+          onClick={() => {
+            setIsModalOpen(true);
+            setIdDone(id);
+          }}
+        >
+          Done
+        </div>
+      ),
     },
   ];
-  const datadone = [
-    {
-      key: "task 1",
-      id: "1",
-      name: "Rowan Watson",
-      email: "magna.sed@yahoo.org",
-      tags: ["Intern"],
-      creator: "Thanh (Menter)",
-      createdAt: "2014-12-24 23:12:00",
-    },
-    {
-      key: "task 2",
-      id: "2",
-      name: "Aiko Copeland",
-      email: "metus.aliquam.erat@icloud.com",
-      tags: ["CTO"],
-      creator: "Thanh (Menter)",
-      createdAt: "2014-12-12 23:12:00",
-    },
-    {
-      key: "task 3",
-      id: "3",
-      name: "Amy Gardner",
-      email: "odio.phasellus.at@icloud.ca",
-      tags: ["IT"],
-      creator: "Nhat (Menter)",
-      createdAt: "2014-11-11 23:12:00",
-    },
-  ];
-  const datatodo = [
-    {
-      key: "task 1",
-      id: "1",
-      name: "Felicia Salazar",
-      email: "dictum.sapien.aenean@protonmail.ca",
-      tags: ["INTERN"],
-      creator: "Thanh (Menter)",
-      createdAt: "2014-12-24 23:12:00",
-    },
-    {
-      key: "task 2",
-      id: "2",
-      name: "Hiroko Burnett",
-      email: "est@protonmail.org",
-      tags: ["IT"],
-      creator: "Thanh (Menter)",
-      createdAt: "2014-12-12 23:12:00",
-    },
-  ];
-  const dataprogress = [
-    {
-      key: "task 1",
-      id: "1",
-      name: "Myra Brennan",
-      email: "massa.lobortis.ultrices@protonmail.org",
-      tags: ["CTO"],
-      creator: "Thanh (Menter)",
-      createdAt: "2014-12-24 23:12:00",
-    },
-  ];
+
   return (
     <div className="containers">
       <div className="containers__header">
         <h1 className="containers__header--title">Workflow Management</h1>
         <div>
-          <AddData/>
+          <AddData />
         </div>
       </div>
       <div className="containers__content">
         <div className="containers__content--task">
           <h1 className="todo">Todo</h1>
-          <Table
-            columns={columns}
-            expandable={{
-              expandedRowRender,
-              defaultExpandedRowKeys: ["0"],
-            }}
-            dataSource={datatodo}
-            size="middle"
-            pagination={false}
-          />
+          {dataWorkflow?.data?.length !== 0 && (
+            <Table
+              columns={columns}
+              dataSource={dataWorkflow?.data?.map((item, index) => {
+                return {
+                  stt: index,
+                  ...item,
+                };
+              })}
+              size="middle"
+              pagination={false}
+            />
+          )}
         </div>
-        <div className="containers__content--task">
-          <h1 className="progress">In Progress</h1>
-          <Table
-            columns={columns}
-            expandable={{
-              expandedRowRender,
-              defaultExpandedRowKeys: ["0"],
+        {isModalOpen && (
+          <Done
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            handleOk={() => {
+              dispatch(deleteWorkFlow({ id: idDone }));
+              setIsModalOpen(!isModalOpen);
             }}
-            dataSource={dataprogress}
-            size="middle"
-            pagination={false}
           />
-        </div>
-        <div className="containers__content--task">
-          <h1 className="done">Done</h1>
-          <Table
-            columns={columns}
-            expandable={{
-              expandedRowRender,
-              defaultExpandedRowKeys: ["0"],
-            }}
-            dataSource={datadone}
-            size="middle"
-            pagination={false}
-          />
-        </div>
+        )}
       </div>
     </div>
   );
