@@ -5,10 +5,11 @@ import { drawerActions } from "../../../store/drawer/slice";
 import format from "dayjs";
 import styles from "./index.module.css";
 import { useMemo } from "react";
-import { tasks } from "../data/task";
 import { generateReportSalary } from "./report";
 
 const Detail = () => {
+  const { tasks } = useSelector((state) => state.employee);
+
   const { payRollDetail } = useSelector((state) => state.drawer);
   const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const Detail = () => {
       return taskSalarys;
     }
     return [];
-  }, [data]);
+  }, [data, tasks]);
 
   const key = "updatable";
   const openMessage = () => {
@@ -53,7 +54,7 @@ const Detail = () => {
       title: "Date",
       dataIndex: "taskDate",
       key: "taskDate",
-      render: (date) => format(date).format("MM/DD/YYYY"),
+      render: (date) => format(date).format("DD/MM/YYYY"),
     },
     {
       title: "Task  Salary",

@@ -1,22 +1,18 @@
-import React from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Button, Tag } from "antd";
 import { Table } from "ant-table-extensions";
 import styles from "./table.module.css";
-import { useState } from "react";
 import { EyeOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { drawerActions } from "../../../store/drawer/slice";
-import { employees } from "../data/employees";
-import { tasks } from "../data/task";
-import { useMemo } from "react";
 
 const TablePayRoll = () => {
   const dispatch = useDispatch();
-
+  const { employees, tasks } = useSelector((state) => state.employee);
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
-      pageSize: 20,
+      pageSize: 6,
       total: employees.length,
     },
   });
@@ -31,7 +27,7 @@ const TablePayRoll = () => {
         salary,
       };
     });
-  }, []);
+  }, [employees, tasks]);
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -51,6 +47,19 @@ const TablePayRoll = () => {
       })
     );
   };
+
+  useEffect(() => {
+    const windowHeight = window.innerHeight;
+    const x = (windowHeight - 240) / 60;
+    const pageSize = x < 1 ? 1 : Math.round(x);
+    setTableParams({
+      ...tableParams,
+      pagination: {
+        ...tableParams.pagination,
+        pageSize,
+      },
+    });
+  }, [tableParams]);
 
   const columns = [
     {
@@ -145,26 +154,28 @@ const TablePayRoll = () => {
   ];
 
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      pagination={{
-        ...tableParams.pagination,
-        showTotal: (total, range) =>
-          `${range[0]} - ${range[1]} of ${total} items`,
-      }}
-      onChange={handleTableChange}
-      rowSelection
-      bordered
-      rowKey="id"
-      size="middle"
-      scroll={{
-        x: 1000,
-        y: "calc(100vh - 290px)",
-      }}
-      exportable={true}
-      searchable={true}
-    />
+    <div className={styles.payrollTable}>
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={{
+          ...tableParams.pagination,
+          showTotal: (total, range) =>
+            `${range[0]} - ${range[1]} of ${total} items`,
+        }}
+        onChange={handleTableChange}
+        rowSelection
+        bordered
+        rowKey="id"
+        size="middle"
+        scroll={{
+          x: 1000,
+          // y: "calc(100%)",
+        }}
+        exportable={true}
+        searchable={true}
+      />
+    </div>
   );
 };
 
