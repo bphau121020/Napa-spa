@@ -38,7 +38,7 @@ const AuthLayout = () => {
             span: 16,
           }}
           initialValues={{
-            remember: true,
+            remember: false,
           }}
           onFinish={onFinish}
           autoComplete="off"
@@ -63,6 +63,11 @@ const AuthLayout = () => {
               {
                 required: true,
                 message: "Please input your password!",
+              },
+              {
+                min: 6,
+                max: 16,
+                message: "Length password invalid!",
               },
             ]}
           >
