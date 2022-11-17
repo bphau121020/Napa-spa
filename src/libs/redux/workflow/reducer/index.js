@@ -12,7 +12,9 @@ const initialState = {
       createdAt: "2014-12-12 23:12:00",
       startDate: "2014-12-12 23:12:00",
       endDate: "2014-12-24 23:12:00",
-      nameTask: "Rebuild Old Project With Team Members"
+      nameTask: "Rebuild Old Project With Team Members",
+      userId: 1,
+      taskSalary: 150000,
     },
     {
       key: "task 2",
@@ -24,7 +26,9 @@ const initialState = {
       createdAt: "2014-12-10 23:12:00",
       startDate: "2014-12-12 23:12:00",
       endDate: "2014-12-24 23:12:00",
-      nameTask: "Code Fullstack Project NAPA SPA"
+      nameTask: "Code Fullstack Project NAPA SPA",
+      userId: 1,
+      taskSalary: 150000,
     },
     {
       key: "task 3",
@@ -36,7 +40,9 @@ const initialState = {
       createdAt: "2014-12-1 23:12:00",
       startDate: "2014-12-1 23:12:00",
       endDate: "2014-12-21 23:12:00",
-      nameTask: "Rebuild Old Project With Team Members"
+      nameTask: "Rebuild Old Project With Team Members",
+      userId: 1,
+      taskSalary: 150000,
     },
   ],
 };

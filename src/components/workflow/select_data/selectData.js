@@ -1,79 +1,26 @@
 import React from "react";
 import { Select, Form, Input } from "antd";
+import { useSelector } from "react-redux";
 const { Option, OptGroup } = Select;
 
 const SelectData = ({ form }) => {
-  // const [form] = Form.useForm();
-  const onGenderChange = (value) => {
-    switch (value) {
-      case "Watson":
-        form.setFieldsValue({
-          email: "magna.sed@yahoo.org",
-        });
-        return;
-      case "Copeland":
-        form.setFieldsValue({
-          email: "metus.aliquam.erat@icloud.com",
-        });
-        return;
-      case "Brennan":
-        form.setFieldsValue({
-          email: "massa.lobortis.ultrices@protonmail.org",
-        });
-        return;
-      case "Donaldson":
-        form.setFieldsValue({
-          email: "sed.molestie@hotmail.ca",
-        });
-        return;
-      case "Gardner":
-        form.setFieldsValue({
-          email: "odio.phasellus.at@icloud.ca",
-        });
-        return;
-      case "Salazar":
-        form.setFieldsValue({
-          email: "dictum.sapien.aenean@protonmail.ca",
-        });
-        return;
-      case "Ballard":
-        form.setFieldsValue({
-          email: "erat.vel@hotmail.com",
-        });
-        return;
-      case "Irwin":
-        form.setFieldsValue({
-          email: "duis.dignissim@aol.ca",
-        });
-        return;
-      case "Parks":
-        form.setFieldsValue({
-          email: "tempus@aol.couk",
-        });
-        return;
-      case "Burnett":
-        form.setFieldsValue({
-          email: "est@protonmail.org",
-        });
-        return;
-      case "Justice":
-        form.setFieldsValue({
-          email: "accumsan@aol.org",
-        });
-        return;
-      case "None":
-        form.setFieldsValue({
-          email: "",
-        });
-        return;
-      default:
-        return;
+  const { employees } = useSelector((state) => state.employee);
+  const jobPositions = [...new Set(employees.map((item) => item.jobPosition))];
+  const onNameChange = (value) => {
+    if (value === "") {
+      return;
+    } else {
+      const employee = employees.find((x) => x.id === value);
+      form.setFieldsValue({
+        email: employee.email,
+        name: employee.name,
+      });
     }
   };
   return (
     <>
       <Form.Item
-        name="name"
+        name="userId"
         label="Name"
         rules={[
           {
@@ -81,34 +28,39 @@ const SelectData = ({ form }) => {
           },
           {
             required: true,
-            message: "Please input your Email!",
+            message: "Please choose employee!",
           },
         ]}
       >
-        <Select placeholder="Select Name" onChange={onGenderChange} allowClear>
-          <OptGroup label="CEO">
-            <Option value="Donaldson">Noah Donaldson</Option>
-          </OptGroup>
-          <OptGroup label="CTO">
-            <Option value="Copeland">Aiko Copeland</Option>
-            <Option value="Brennan">Myra Brennan</Option>
-            <Option value="Irwin">Ocean Irwin</Option>
-          </OptGroup>
-          <OptGroup label="IT">
-            <Option value="Gardner">Amy Gardner</Option>
-            <Option value="Parks">Boris Parks</Option>
-            <Option value="Burnett">Hiroko Burnett</Option>
-          </OptGroup>
-          <OptGroup label="Intern">
-            <Option value="Watson">Rowan Watson</Option>
-            <Option value="Salazar">Felicia Salazar</Option>
-            <Option value="Ballard">Kenneth Ballard</Option>
-            <Option value="Justice">Xena Justice</Option>
-          </OptGroup>
-          <OptGroup label="None">
-            <Option value="None">None</Option>
-          </OptGroup>
+        <Select placeholder="Select Name" onSelect={onNameChange}>
+          {jobPositions.map((position, i) => (
+            <OptGroup label={position} key={i}>
+              {employees
+                .filter((x) => x.jobPosition === position)
+                .map((employee) => (
+                  <Option value={employee.id} key={employee.id}>
+                    {employee.name}
+                  </Option>
+                ))}
+            </OptGroup>
+          ))}
         </Select>
+      </Form.Item>
+
+      <Form.Item
+        hidden
+        name="name"
+        label="name"
+        rules={[
+          {
+            type: "string",
+          },
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input readOnly />
       </Form.Item>
       <Form.Item
         name="email"
@@ -119,11 +71,11 @@ const SelectData = ({ form }) => {
           },
           {
             required: true,
-            message: "Please input your Email!",
+            message: "Please input Email!",
           },
         ]}
       >
-        <Input />
+        <Input readOnly />
       </Form.Item>
       <Form.Item
         noStyle
