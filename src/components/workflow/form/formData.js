@@ -66,6 +66,8 @@ const Formdata = ({ setOpen }) => {
       workflow: values?.workflow,
       time: new Date(values["time-picker"]),
       nameTask: values?.nametask,
+      userId: values?.userId,
+      taskSalary: 150000,
     };
     dispatch(addWorkFlowAction(handleData));
     setOpen(false);
