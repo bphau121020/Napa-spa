@@ -28,7 +28,7 @@ const initialState = {
       time: "2022-11-16T23:00:00.838Z",
       nameTask: "Code Fullstack Project NAPA SPA",
       userId: 6,
-      taskSalary: 150000,
+      taskSalary: 100000,
     },
     {
       name: "Aiko Copeland",
