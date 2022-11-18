@@ -1,5 +1,5 @@
 import React from "react";
-import { DatePicker, TimePicker, Form, Input, Button } from "antd";
+import { DatePicker, TimePicker, Form, Input, Button, InputNumber } from "antd";
 import SelectData from "../select_data/selectData";
 import shortid from "shortid";
 import { useDispatch } from "react-redux";
@@ -67,7 +67,7 @@ const Formdata = ({ setOpen }) => {
       time: new Date(values["time-picker"]),
       nameTask: values?.nametask,
       userId: values?.userId,
-      taskSalary: 150000,
+      taskSalary: values?.taskSalary,
     };
     dispatch(addWorkFlowAction(handleData));
     setOpen(false);
@@ -121,6 +121,23 @@ const Formdata = ({ setOpen }) => {
           ]}
         >
           <Input.TextArea />
+        </Form.Item>
+        <Form.Item
+          name={["taskSalary"]}
+          label="Salary Task"
+          rules={[
+            {
+              type: "taskSalary",
+              min: 100000,
+              max: 100000000,
+            },
+            {
+              required: true,
+              message: "Please input your Salary Task!",
+            },
+          ]}
+        >
+          <InputNumber />
         </Form.Item>
         <Form.Item
           wrapperCol={{

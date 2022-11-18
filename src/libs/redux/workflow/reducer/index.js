@@ -14,7 +14,7 @@ const initialState = {
       endDate: "2014-12-24 23:12:00",
       nameTask: "Rebuild Old Project With Team Members",
       userId: 1,
-      taskSalary: 150000,
+      taskSalary: 100000,
     },
     {
       key: "task 2",
@@ -42,7 +42,7 @@ const initialState = {
       endDate: "2014-12-21 23:12:00",
       nameTask: "Rebuild Old Project With Team Members",
       userId: 1,
-      taskSalary: 150000,
+      taskSalary: 200000,
     },
   ],
 };

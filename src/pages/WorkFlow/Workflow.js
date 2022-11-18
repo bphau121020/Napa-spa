@@ -20,7 +20,7 @@ const Work = () => {
       dataIndex: "stt",
       key: "stt",
       width: 80,
-      align: 'center',
+      align: "center",
     },
     {
       title: "Id",
@@ -39,15 +39,23 @@ const Work = () => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      width: 300,
+      width: 270,
+      ellipsis: true,
+    },
+    {
+      title: "Task Salary",
+      key: "taskSalary",
+      dataIndex: "taskSalary",
+      width: 100,
     },
     {
       title: "Workflow",
       key: "workflow",
       dataIndex: "workflow",
       width: 80,
-      align: 'center',
+      align: "center",
     },
+
     {
       title: "Name Task",
       dataIndex: "nameTask",
@@ -59,7 +67,7 @@ const Work = () => {
       dataIndex: "creator",
       key: "creator",
       width: 130,
-      align: 'center',
+      align: "center",
     },
     {
       title: "Date Create",
@@ -89,7 +97,7 @@ const Work = () => {
       title: "Action",
       key: "operation",
       width: 60,
-      align: 'center',
+      align: "center",
       render: (_, { id }) => (
         <div
           className="btn-delete"
