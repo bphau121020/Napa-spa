@@ -8,7 +8,8 @@ import { drawerActions } from "../../../store/drawer/slice";
 
 const TablePayRoll = () => {
   const dispatch = useDispatch();
-  const { employees, tasks } = useSelector((state) => state.employee);
+  const { employees } = useSelector((state) => state.employee);
+  const { data: tasks } = useSelector((state) => state.workFlowReducer);
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,

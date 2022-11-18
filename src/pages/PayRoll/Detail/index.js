@@ -8,7 +8,8 @@ import { useMemo } from "react";
 import { generateReportSalary } from "./report";
 
 const Detail = () => {
-  const { tasks } = useSelector((state) => state.employee);
+  // const { tasks } = useSelector((state) => state.employee);
+  const { data: tasks } = useSelector((state) => state.workFlowReducer);
 
   const { payRollDetail } = useSelector((state) => state.drawer);
   const dispatch = useDispatch();
@@ -42,18 +43,18 @@ const Detail = () => {
   const columns = [
     {
       title: "Task ID",
-      dataIndex: "taskId",
-      key: "taskId",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Task Name",
-      dataIndex: "taskName",
-      key: "taskName",
+      dataIndex: "nameTask",
+      key: "nameTask",
     },
     {
       title: "Date",
-      dataIndex: "taskDate",
-      key: "taskDate",
+      dataIndex: "time",
+      key: "time",
       render: (date) => format(date).format("DD/MM/YYYY"),
     },
     {
