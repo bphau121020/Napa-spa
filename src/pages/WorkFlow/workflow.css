@@ -1,0 +1,30 @@
+.containers__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.containers__header--title {
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.containers__content {
+  height: 75vh;
+  overflow-y: auto;
+}
+.containers__content h1 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.containers__content .todo {
+  color: #e14d2a;
+}
+.btn-delete {
+  color: #2146c7;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  color: #e14d2a;
+}
